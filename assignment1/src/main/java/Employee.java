@@ -15,7 +15,7 @@ public class Employee {
     return name;
   }
 
-  public void setName() {
+  public void setName(String name) {
     this.name = name;
   }
 
@@ -29,6 +29,10 @@ public class Employee {
   
   public String getSSN() {
     return ssn;
+  }
+
+  public void setSSN(String ssn) {
+    this.ssn = ssn;
   }
 
   public void setSalary(int salary) {
