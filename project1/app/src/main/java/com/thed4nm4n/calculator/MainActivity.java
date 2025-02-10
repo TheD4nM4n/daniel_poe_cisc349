@@ -112,22 +112,23 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-        // display answer, get ready for next operation
+        // display answer, clear data
         editTextExpression.setText(String.valueOf(numOne));
+
         numTwo = 0;
-
-        if (!chain)
-        {
-            updateOperator("");
-        }
-
+        operator = "";
+        buttonPlus.setBackgroundColor(getColor(R.color.button_default));
+        buttonMinus.setBackgroundColor(getColor(R.color.button_default));
+        buttonDivide.setBackgroundColor(getColor(R.color.button_default));
         textViewNumOne.setText("");
     }
 
     private boolean clear()
     {
-        // clearing ints, edittext, and operator
+        // clearing ints, edittext, textview and operator
         editTextExpression.setText("");
+        textViewNumOne.setText("");
+        
         numOne = 0;
         numTwo = numOne;
         updateOperator("");
