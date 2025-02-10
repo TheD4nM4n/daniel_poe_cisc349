@@ -26,23 +26,53 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewNumOne;
     private String operator = "";
 
-    private void updateNum(int num) {
+    private void updateNum(int num)
+    {
+
+        // using this silly method of storing the integer value
         if (operator.isEmpty())
         {
-            numOne = numOne * 10 + num;
+            if (numOne < 0)
+            {
+                numOne = numOne * 10 - num;
+            }
+            else
+            {
+                numOne = numOne * 10 + num;
+            }
+
             editTextExpression.setText(String.valueOf(numOne));
-        } else
+
+        }
+        else
         {
-            numTwo = numTwo * 10 + num;
+            if (numTwo < 0)
+            {
+                numTwo = numTwo * 10 - num;
+            }
+            else
+            {
+                numTwo = numTwo * 10 + num;
+            }
+
             editTextExpression.setText(String.valueOf(numTwo));
         }
     }
 
-    private void updateOperator(String op) {
+    private void updateOperator(String op)
+    {
+        // chain calculations
+        if (!operator.isEmpty())
+        {
+            calculate(true);
+        }
+
         operator = op;
         textViewNumOne.setText(String.valueOf(numOne));
 
-        switch (op) {
+        // highlighting selected operator
+        switch (op)
+        {
             case "+":
                 buttonPlus.setBackgroundColor(getColor(R.color.button_selected));
                 buttonMinus.setBackgroundColor(getColor(R.color.button_default));
@@ -66,8 +96,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void calculate() {
-        switch (operator) {
+    private void calculate(boolean chain)
+    {
+
+        switch (operator)
+        {
             case "+":
                 numOne = numOne + numTwo;
                 break;
@@ -79,34 +112,48 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
+        // display answer, get ready for next operation
         editTextExpression.setText(String.valueOf(numOne));
         numTwo = 0;
-        updateOperator("");
+
+        if (!chain)
+        {
+            updateOperator("");
+        }
+
         textViewNumOne.setText("");
     }
 
-    private void clear() {
+    private boolean clear()
+    {
+        // clearing ints, edittext, and operator
         editTextExpression.setText("");
         numOne = 0;
         numTwo = numOne;
         updateOperator("");
 
+        // now you know
         Toast.makeText(getApplicationContext(), "Cleared data", Toast.LENGTH_SHORT).show();
+        return true;
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
+
+        // the usual
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) ->
+        {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-        });
+        }
+        );
 
-        textViewNumOne = findViewById(R.id.textViewNumOne);
-        editTextExpression = findViewById(R.id.editTextExpression);
+        // local widgets
         Button buttonOne = findViewById(R.id.buttonOne);
         Button buttonTwo = findViewById(R.id.buttonTwo);
         Button buttonThree = findViewById(R.id.buttonThree);
@@ -117,11 +164,17 @@ public class MainActivity extends AppCompatActivity {
         Button buttonEight = findViewById(R.id.buttonEight);
         Button buttonNine = findViewById(R.id.buttonNine);
         Button buttonZero = findViewById(R.id.buttonZero);
+
+        Button buttonEquals = findViewById(R.id.buttonEquals);
+
+        // private widgets
+        textViewNumOne = findViewById(R.id.textViewNumOne);
+        editTextExpression = findViewById(R.id.editTextExpression);
         buttonPlus = findViewById(R.id.buttonPlus);
         buttonMinus = findViewById(R.id.buttonMinus);
         buttonDivide = findViewById(R.id.buttonDivide);
-        Button buttonEquals = findViewById(R.id.buttonEquals);
 
+        // number button listeners
         buttonOne.setOnClickListener(v -> updateNum(1));
         buttonTwo.setOnClickListener(v -> updateNum(2));
         buttonThree.setOnClickListener(v -> updateNum(3));
@@ -133,14 +186,13 @@ public class MainActivity extends AppCompatActivity {
         buttonNine.setOnClickListener(v -> updateNum(9));
         buttonZero.setOnClickListener(v -> updateNum(0));
 
+        // operator button listeners
         buttonPlus.setOnClickListener(v -> updateOperator("+"));
         buttonMinus.setOnClickListener(v -> updateOperator("-"));
         buttonDivide.setOnClickListener(v -> updateOperator("/"));
-        buttonEquals.setOnClickListener(v -> calculate());
-        buttonEquals.setOnLongClickListener(v ->
-        {
-            clear();
-            return true;
-        });
+
+        // equal button listeners
+        buttonEquals.setOnClickListener(v -> calculate(false));
+        buttonEquals.setOnLongClickListener(v -> clear());
     }
 }
