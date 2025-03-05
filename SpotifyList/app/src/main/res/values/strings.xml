@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SpotifyList</string>
+    <string name="data_url">https://nua.insufficient-light.com/data/holiday_songs_spotify.json</string>
+</resources>
