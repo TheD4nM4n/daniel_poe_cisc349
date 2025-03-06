@@ -117,12 +117,4 @@ public class MainActivity extends AppCompatActivity {
         queue.start();
 
     }
-
-    public List<Album> getAlbumList() {
-        return albumList;
-    }
-
-    public ImageLoader getImageLoader() {
-        return imageLoader;
-    }
 }
