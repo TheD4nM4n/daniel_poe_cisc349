@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NetworkList</string>
+    <string name="url">http://10.2.100.130:5000/all</string>
+</resources>
