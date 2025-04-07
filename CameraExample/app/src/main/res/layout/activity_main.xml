@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView android:id="@+id/image_view"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="400sp" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/camera_buttons"
+        app:layout_constraintTop_toBottomOf="@+id/image_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText android:id="@+id/comment_text"
+            android:autofillHints="photo comment"
+            android:inputType="text"
+            android:hint="photo comment"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/capture_button"
+            android:layout_height="wrap_content"
+            android:layout_width="0sp"
+            android:layout_marginStart="16sp"
+            android:layout_marginEnd="8sp"/>
+
+        <Button android:id="@+id/capture_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/send_button"
+            android:background="@android:color/transparent"
+            android:foreground="@drawable/action_camera"
+            android:layout_width="48sp"
+            android:layout_height="48sp"
+            android:layout_marginEnd="8sp"/>
+
+        <Button android:id="@+id/send_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Send"
+            android:layout_width="wrap_content"
+            android:layout_height="48sp"
+            android:layout_marginEnd="16sp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button android:id="@+id/gallery_button"
+        android:text="Gallery"
+        app:layout_constraintTop_toBottomOf="@+id/camera_buttons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@android:color/transparent"
+        android:foreground="@drawable/action_gallery"
+        android:layout_width="48sp"
+        android:layout_height="48sp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
