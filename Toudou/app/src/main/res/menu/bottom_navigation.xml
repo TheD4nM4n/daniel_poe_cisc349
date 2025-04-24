@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_daily"
+        android:title="@string/action_daily"
+        android:icon="@drawable/action_daily" />
+    <item android:id="@+id/action_weekly"
+        android:title="@string/action_weekly"
+        android:icon="@drawable/action_weekly" />
+    <item android:id="@+id/action_monthly"
+        android:title="@string/action_monthly"
+        android:icon="@drawable/action_monthly" />
+</menu>

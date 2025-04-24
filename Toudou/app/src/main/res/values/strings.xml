@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Toudou</string>
+    <string name="action_daily">Daily</string>
+    <string name="action_weekly">Weekly</string>
+    <string name="action_monthly">Monthly</string>
+    <string name="url">http://10.2.99.214:5000/tasks</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

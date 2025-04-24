@@ -14,7 +14,7 @@ db = client["CISC349"]
 # Welcome route
 @app.route('/')
 def index():
-    return "<h1>Get out of our server!!</h1>"
+    return "<h1>Leave now</h1>"
 
 # Add user
 @app.route('/add', methods=['POST'])
@@ -47,6 +47,19 @@ def update():
     newvalues = {"$set": {'comments': comments}}
     _id = collection.update_one(filter, newvalues)
     return json.dumps({"status": "received"})
+
+@app.route('/send-image', methods=["POST"])
+def send_image():
+    collection = db["images"]
+    content = request.get_json()
+    _id = collection.insert_one(content)
+    return json.dumps({'id' : str(_id.inserted_id)})
+
+@app.route('/get-images', methods=["POST"])
+def get_images():
+    collection = db["images"]
+    images = list(collection.find())
+    return json.dumps(images, default=str).replace("\\n", "")
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port="5000")
